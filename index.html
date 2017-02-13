@@ -64,7 +64,7 @@
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/02/13/hello-world/" class="article-date">
-  <time datetime="2017-02-12T23:55:21.169Z" itemprop="datePublished">2017-02-13</time>
+  <time datetime="2017-02-13T00:00:09.951Z" itemprop="datePublished">2017-02-13</time>
 </a>
     
   </div>
@@ -96,7 +96,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/13/hello-world/" data-id="ciz3bwe6p00015cp8o4n8069g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/13/hello-world/" data-id="ciz3c2l0f000269p8wykfzsu8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +200,7 @@ if (in_array(&apos;password&apos;, $auth_methods ))
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/13/ssh-1/" data-id="ciz3bwe6t00025cp8amns0m2n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/13/ssh-1/" data-id="ciz3c2l0h000369p80hcxqi1o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +237,65 @@ if (in_array(&apos;password&apos;, $auth_methods ))
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/13/My-New-Post/" data-id="ciz3bwe6j00005cp8n5kzigon" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/02/13/My-New-Post/" data-id="ciz3c2l05000069p8h5ym9hw9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gz" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/gz/" class="article-date">
+  <time datetime="2017-02-12T09:58:42.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/12/gz/">构建nodejs环境及解决node服务器外网端口无法访问</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>关于Linux 的nodejs环境的搭建其实没有那么复杂，只要几个命令行就可以了而且最新的nodejs已经包含了npm的安装，所以只要安装了nodejs，剩下的npm也就安装上了，</p>
+<p>闲话少说：</p>
+<p>1.下载nodejs，你可以用Git clone的方式，但是那种方式下载量很大 ，所以建议使用wget的方式：</p>
+<p>wget <a href="http://nodejs.org/dist/v0.10.24/node-v0.10.24.tar.gz" target="_blank" rel="external">http://nodejs.org/dist/v0.10.24/node-v0.10.24.tar.gz</a></p>
+<p>2 解压 </p>
+<p>tar zxvf  node-v0.10.24.tar.gz</p>
+<p>3、编译</p>
+<p>./configure –prefix=/usr/local/node/0.10.24</p>
+<p>4 、 make &amp;&amp; make install</p>
+<p>以上就是安装的过程，为了能让node成为全局变量</p>
+<p>我们还要设置下：</p>
+<p>vim /etc/profile</p>
+<p>在这个文件下加入：</p>
+<p>export NODE_HOME=/usr/local/node/0.10.24</p>
+<p>export PATH=$NODE_HOME/bin:$PATH</p>
+<p>注意 PATH中已经有了系统的变量只要在最后的地方加入就行</p>
+<p>source /etc/profile</p>
+<p>重启生效</p>
+<p>我们验证下 node -v  可以看到成功 同时验证 输入 npm 也成功了</p>
+<p>PS：<br>当我们写出第一个程序的时候，发现在外网不能访问，这个时候我们需要把端口打开，例如我们的端口是8888 我们需要</p>
+<p>/sbin/iptables -I INPUT -p tcp –dport 8888 -j ACCEPT #开启8888端口 </p>
+<p>我是centos 7 所以运行service network restart，运行成功，在外网访问到</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/12/gz/" data-id="ciz3c2l0c000169p8f84s4gc7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,6 +344,10 @@ if (in_array(&apos;password&apos;, $auth_methods ))
         
           <li>
             <a href="/2017/02/13/My-New-Post/">My New Post</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/12/gz/">构建nodejs环境及解决node服务器外网端口无法访问</a>
           </li>
         
       </ul>

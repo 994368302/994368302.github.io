@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>队列 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是双端队列(或双向队列)Deque，全名double-ended queue？即元素可以在队列的任意一段入队或出队，如果我们把这些方法叫做insertLeft()和insertRight()，以及removeLeft()和removeRight()。如果严格禁止调用insertLeft()和removeLeft()方法（或禁用右段的操作），双端队列功能就和栈一样。禁止调用insertLeft(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="队列">
+<meta property="og:url" content="http://yoursite.com/2017/02/12/duilie/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是双端队列(或双向队列)Deque，全名double-ended queue？即元素可以在队列的任意一段入队或出队，如果我们把这些方法叫做insertLeft()和insertRight()，以及removeLeft()和removeRight()。如果严格禁止调用insertLeft()和removeLeft()方法（或禁用右段的操作），双端队列功能就和栈一样。禁止调用insertLeft(">
+<meta property="og:updated_time" content="2017-02-13T00:08:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="队列">
+<meta name="twitter:description" content="什么是双端队列(或双向队列)Deque，全名double-ended queue？即元素可以在队列的任意一段入队或出队，如果我们把这些方法叫做insertLeft()和insertRight()，以及removeLeft()和removeRight()。如果严格禁止调用insertLeft()和removeLeft()方法（或禁用右段的操作），双端队列功能就和栈一样。禁止调用insertLeft(">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-duilie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/12/duilie/" class="article-date">
+  <time datetime="2017-02-12T10:07:44.000Z" itemprop="datePublished">2017-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      队列
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>什么是双端队列(或双向队列)Deque，全名double-ended queue？<br>即元素可以在队列的任意一段入队或出队，如果我们把这些方法叫做insertLeft()和insertRight()，以及removeLeft()和removeRight()。如果严格禁止调用insertLeft()和removeLeft()方法（或禁用右段的操作），双端队列功能就和栈一样。禁止调用insertLeft()和removeRight()（或相反的另一对方法），它的功能就和队列一样了。双端队列与栈或队列相比，是一种多用途的数据结构。<br>PHP实现双端队列：</p>
+<pre><code>&lt;?php
+class Deque  
+{ 
+    public $queue = array(); 
+
+    /**（尾部）入队  **/ 
+    public function addLast($value)  
+    { 
+        return array_push($this-&gt;queue,$value); 
+    } 
+    /**（尾部）出队**/ 
+    public function removeLast()  
+    { 
+        return array_pop($this-&gt;queue); 
+    } 
+    /**（头部）入队**/ 
+    public function addFirst($value)  
+    { 
+        return array_unshift($this-&gt;queue,$value); 
+    } 
+    /**（头部）出队**/ 
+    public function removeFirst()  
+    { 
+        return array_shift($this-&gt;queue); 
+    } 
+    /**清空队列**/ 
+    public function makeEmpty()  
+    { 
+        unset($this-&gt;queue);
+    } 
+
+    /**获取列头**/
+    public function getFirst()  
+    { 
+        return reset($this-&gt;queue); 
+    } 
+
+    /** 获取列尾 **/
+    public function getLast()  
+    { 
+        return end($this-&gt;queue); 
+    }
+
+    /** 获取长度 **/
+    public function getLength()  
+    { 
+        return count($this-&gt;queue); 
+    }
+
+}
+</code></pre><p>队列的用途：<br>队列可以很好地异步处理数据传送和存储，当你频繁地向数据库中插入数据、频繁地向搜索引擎提交数据，就可采取队列来异步插入。另外，还可以将较慢的处理逻辑、有并发数量限制的处理逻辑，通过消息队列放在后台处理，例如FLV视频转换、发送手机短信、发送电子邮件等。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/12/duilie/" data-id="ciz3ce35l000283p8iu62btse" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/02/13/My-New-Post/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          My New Post
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/12/gz/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">构建nodejs环境及解决node服务器外网端口无法访问</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/02/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/13/HEXO搭建个人博客/">HEXO搭建个人博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/13/ssh-1/">ssh远程操控mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/13/My-New-Post/">My New Post</a>
+          </li>
+        
+          <li>
+            <a href="/2017/02/12/duilie/">队列</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
